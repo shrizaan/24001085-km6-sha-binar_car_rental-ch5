@@ -1,0 +1,1166 @@
+{
+	"info": {
+		"_postman_id": "314cfcf1-ac96-4a18-897d-0b5532c2d35b",
+		"name": "Shahrizan-FSW2-Challenge 4",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Car Types",
+			"item": [
+				{
+					"name": "Get Car Types",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/car-types",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"car-types"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Car Type with Invalid ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/car-types/xxx",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"car-types",
+								"xxx"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Car Type with Valid ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/car-types/car-type-227f8356-e648-46c0-92e4-1fbd3c2375f2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"car-types",
+								"car-type-227f8356-e648-46c0-92e4-1fbd3c2375f2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Car Type with Valid ID (for redis)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/car-types/car-type-3f131253-9dd2-4d9c-8573-6e75a80f79de",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"car-types",
+								"car-type-3f131253-9dd2-4d9c-8573-6e75a80f79de"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Car Type with Invalid Payload",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/car-types",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"car-types"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Car Type with Valid Payload",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type\": \"Pickup Truck\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/car-types",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"car-types"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Car Type with Invalid ID",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type\": \"0\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/car-types/xxx",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"car-types",
+								"xxx"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Car Type with Invalid Payload",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/car-types/car-type-3f131253-9dd2-4d9c-8573-6e75a80f79de",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"car-types",
+								"car-type-3f131253-9dd2-4d9c-8573-6e75a80f79de"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Car Type with Valid Payload and ID",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type\": \"Coupe\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/car-types/car-type-3f131253-9dd2-4d9c-8573-6e75a80f79de",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"car-types",
+								"car-type-3f131253-9dd2-4d9c-8573-6e75a80f79de"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Car Type with Invalid ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type\": \"Coupe\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/car-types/xxx",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"car-types",
+								"xxx"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Car Type with Valid ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type\": \"Coupe\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/car-types/car-type-3f131253-9dd2-4d9c-8573-6e75a80f79de",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"car-types",
+								"car-type-3f131253-9dd2-4d9c-8573-6e75a80f79de"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Car Brands",
+			"item": [
+				{
+					"name": "Get Car Brands",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/car-brands",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"car-brands"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Car Brand with Invalid ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/car-brands/xxx",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"car-brands",
+								"xxx"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Car Brand with Valid ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/car-brands/car-brand-f0856500-ee54-11ee-b564-325096b39f47",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"car-brands",
+								"car-brand-f0856500-ee54-11ee-b564-325096b39f47"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Car Brand with Valid ID (for redis)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/car-brands/car-brand-3b171065-cdc0-449d-b37a-70c04cca963f",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"car-brands",
+								"car-brand-3b171065-cdc0-449d-b37a-70c04cca963f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Car Brand with Invalid Payload",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/car-brands",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"car-brands"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Car Brand with Valid Payload",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Audi\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/car-brands",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"car-brands"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Car Brand with Invalid ID",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Audi\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/car-brands/xxx",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"car-brands",
+								"xxx"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Car Brand with Invalid Payload",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": 0,\r\n    \"wrong\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/car-brands/car-brand-3b171065-cdc0-449d-b37a-70c04cca963f",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"car-brands",
+								"car-brand-3b171065-cdc0-449d-b37a-70c04cca963f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Car Brand with Valid Payload and ID",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Nissan\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/car-brands/car-brand-3b171065-cdc0-449d-b37a-70c04cca963f",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"car-brands",
+								"car-brand-3b171065-cdc0-449d-b37a-70c04cca963f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Car Brand with Invalid ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Nissan\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/car-brands/xxx",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"car-brands",
+								"xxx"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Car Brand with Valid ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Nissan\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/car-brands/car-brand-3b171065-cdc0-449d-b37a-70c04cca963f",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"car-brands",
+								"car-brand-3b171065-cdc0-449d-b37a-70c04cca963f"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cars",
+			"item": [
+				{
+					"name": "Get Cars",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/cars",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"cars"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Car with Invalid ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/cars/xxx",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"cars",
+								"xxx"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Car with Valid ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/cars/car-6e2bc663-5197-441a-957b-bc75e4a2da7c",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"cars",
+								"car-6e2bc663-5197-441a-957b-bc75e4a2da7c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Car with Valid ID (for redis)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/cars/car-5b67f1d7-92d4-41c7-8577-4435740aadf1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"cars",
+								"car-5b67f1d7-92d4-41c7-8577-4435740aadf1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Car with Invalid Payload",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "plate",
+									"value": "DK 4021 XY",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "Honda Brio",
+									"type": "text"
+								},
+								{
+									"key": "rentPerDay",
+									"value": "250000",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Compact and fuel-efficient city car. Perfect for navigating urban areas.",
+									"type": "text"
+								},
+								{
+									"key": "availableAt",
+									"value": "2024-03-27T08:00:00.000Z",
+									"type": "text"
+								},
+								{
+									"key": "transmission",
+									"value": "Manual",
+									"type": "text"
+								},
+								{
+									"key": "available",
+									"value": "true",
+									"type": "text"
+								},
+								{
+									"key": "size",
+									"value": "small",
+									"type": "text"
+								},
+								{
+									"key": "year",
+									"value": "2021",
+									"type": "text"
+								},
+								{
+									"key": "type_id",
+									"value": "car-type-a5bd09b9-b450-437e-bbcc-eb63fbb84b6b",
+									"type": "text"
+								},
+								{
+									"key": "brand_id",
+									"value": "car-brand-cbb3327f-ea73-4f0b-bec0-e480a00dab3f",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "text-small.txt"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/cars",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"cars"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Car with Valid Payload",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "plate",
+									"value": "DK 4021 XY",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "Honda Brio",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "honda-brio.jpg"
+								},
+								{
+									"key": "rentPerDay",
+									"value": "250000",
+									"type": "text"
+								},
+								{
+									"key": "capacity",
+									"value": "4",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Compact and fuel-efficient city car. Perfect for navigating urban areas.",
+									"type": "text"
+								},
+								{
+									"key": "availableAt",
+									"value": "2024-03-27T08:00:00.000Z",
+									"type": "text"
+								},
+								{
+									"key": "transmission",
+									"value": "Manual",
+									"type": "text"
+								},
+								{
+									"key": "available",
+									"value": "true",
+									"type": "text"
+								},
+								{
+									"key": "size",
+									"value": "small",
+									"type": "text"
+								},
+								{
+									"key": "year",
+									"value": "2021",
+									"type": "text"
+								},
+								{
+									"key": "type_id",
+									"value": "car-type-a5bd09b9-b450-437e-bbcc-eb63fbb84b6b",
+									"type": "text"
+								},
+								{
+									"key": "brand_id",
+									"value": "car-brand-cbb3327f-ea73-4f0b-bec0-e480a00dab3f",
+									"type": "text"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/cars",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"cars"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Car with Invalid ID",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "plate",
+									"value": "BG 23ED3 DE",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "Toyota Yaris",
+									"type": "text"
+								},
+								{
+									"key": "rentPerDay",
+									"value": "300000",
+									"type": "text"
+								},
+								{
+									"key": "capacity",
+									"value": "5",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Spacious and reliable city car. Great for everyday commuting.",
+									"type": "text"
+								},
+								{
+									"key": "availableAt",
+									"value": "2024-04-01T08:00:00.000Z",
+									"type": "text"
+								},
+								{
+									"key": "transmission",
+									"value": "Automatic",
+									"type": "text"
+								},
+								{
+									"key": "available",
+									"value": "true",
+									"type": "text"
+								},
+								{
+									"key": "size",
+									"value": "small",
+									"type": "text"
+								},
+								{
+									"key": "year",
+									"value": "2021",
+									"type": "text"
+								},
+								{
+									"key": "type_id",
+									"value": "car-type-a5bd09b9-b450-437e-bbcc-eb63fbb84b6b",
+									"type": "text"
+								},
+								{
+									"key": "brand_id",
+									"value": "car-brand-f0856500-ee54-11ee-b564-325096b39f47",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "fi_users.png"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/cars/xxx",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"cars",
+								"xxx"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Car with Invalid Payload",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "plate",
+									"value": "BG 23ED3 DE",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "Toyota Yaris",
+									"type": "text"
+								},
+								{
+									"key": "rentPerDay",
+									"value": "300000",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Spacious and reliable city car. Great for everyday commuting.",
+									"type": "text"
+								},
+								{
+									"key": "availableAt",
+									"value": "2024-04-01T08:00:00.000Z",
+									"type": "text"
+								},
+								{
+									"key": "transmission",
+									"value": "Automatic",
+									"type": "text"
+								},
+								{
+									"key": "available",
+									"value": "true",
+									"type": "text"
+								},
+								{
+									"key": "size",
+									"value": "small",
+									"type": "text"
+								},
+								{
+									"key": "year",
+									"value": "2021",
+									"type": "text"
+								},
+								{
+									"key": "type_id",
+									"value": "car-type-a5bd09b9-b450-437e-bbcc-eb63fbb84b6b",
+									"type": "text"
+								},
+								{
+									"key": "brand_id",
+									"value": "car-brand-f0856500-ee54-11ee-b564-325096b39f47",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "toyota-yaris.jpg"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/cars/9ff03bbc-b18c-4ba7-8f3a-4c4b5c2f6c77",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"cars",
+								"9ff03bbc-b18c-4ba7-8f3a-4c4b5c2f6c77"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Car with Valid ID and Payload",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "plate",
+									"value": "XYZ789",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "Hyundai Ioniq 5",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "hyundai-ioniq-5.webp"
+								},
+								{
+									"key": "rentPerDay",
+									"value": "700000",
+									"type": "text"
+								},
+								{
+									"key": "capacity",
+									"value": "5",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Spacious and reliable city car. Great for everyday commuting.",
+									"type": "text"
+								},
+								{
+									"key": "availableAt",
+									"value": "2024-04-01T08:00:00.000Z",
+									"type": "text"
+								},
+								{
+									"key": "transmission",
+									"value": "Automatic",
+									"type": "text"
+								},
+								{
+									"key": "available",
+									"value": "true",
+									"type": "text"
+								},
+								{
+									"key": "size",
+									"value": "small",
+									"type": "text"
+								},
+								{
+									"key": "year",
+									"value": "2021",
+									"type": "text"
+								},
+								{
+									"key": "type_id",
+									"value": "car-type-a5bd09b9-b450-437e-bbcc-eb63fbb84b6b",
+									"type": "text"
+								},
+								{
+									"key": "brand_id",
+									"value": "car-brand-e832841b-1577-46f2-9e49-4ea6197bc19d",
+									"type": "text"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/cars/car-5b67f1d7-92d4-41c7-8577-4435740aadf1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"cars",
+								"car-5b67f1d7-92d4-41c7-8577-4435740aadf1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Car with Invalid ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/cars/xxx",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"cars",
+								"xxx"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Car with Valid ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/cars/car-5b67f1d7-92d4-41c7-8577-4435740aadf1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"cars",
+								"car-5b67f1d7-92d4-41c7-8577-4435740aadf1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
