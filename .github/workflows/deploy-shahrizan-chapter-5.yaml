@@ -28,6 +28,12 @@ jobs:
       - name: Install dependencies
         run: npm install --frozen-lockfile
 
+      - name: Generate env from secrets
+        working-directory: .
+        run: |
+            SECRETS="${{ secrets.PROJECT_ENV }}"
+            echo "$SECRETS" | tr ';' '\n' >> .env
+
       - name: Google Cloud Auth
         uses: "google-github-actions/auth@v2"
         with:
