@@ -1,6 +1,6 @@
 const express = require('express');
 
-const { validationHandler } = require('../middleware');
+const { validationHandler, authorizeAdminMw } = require('../middleware');
 const { CarBrandPayloadSchema } = require('../validations');
 
 const router = express.Router();
@@ -9,19 +9,19 @@ const carBrandController = require('../controllers/car-brand');
 
 router
   .route('/')
-  .get(carBrandController.getCarBrandsHandler)
+  .get(authorizeAdminMw, carBrandController.getCarBrandsHandler)
   .post(
-    validationHandler(CarBrandPayloadSchema),
+    [validationHandler(CarBrandPayloadSchema), authorizeAdminMw],
     carBrandController.postCarBrandHandler,
   );
 
 router
   .route('/:id')
-  .get(carBrandController.getCarBrandByIdHandler)
+  .get(authorizeAdminMw, carBrandController.getCarBrandByIdHandler)
   .put(
-    validationHandler(CarBrandPayloadSchema),
+    [validationHandler(CarBrandPayloadSchema), authorizeAdminMw],
     carBrandController.putCarBrandByIdHandler,
   )
-  .delete(carBrandController.deleteCarBrandByIdHandler);
+  .delete(authorizeAdminMw, carBrandController.deleteCarBrandByIdHandler);
 
 module.exports = router;

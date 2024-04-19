@@ -1,6 +1,6 @@
 const express = require('express');
 
-const { validationHandler } = require('../middleware');
+const { validationHandler, authorizeAdminMw } = require('../middleware');
 const { CarTypePayloadSchema } = require('../validations');
 
 const router = express.Router();
@@ -9,19 +9,19 @@ const carTypeController = require('../controllers/car-type');
 
 router
   .route('/')
-  .get(carTypeController.getCarTypesHandler)
+  .get(authorizeAdminMw, carTypeController.getCarTypesHandler)
   .post(
-    validationHandler(CarTypePayloadSchema),
+    [validationHandler(CarTypePayloadSchema), authorizeAdminMw],
     carTypeController.postCarTypeHandler,
   );
 
 router
   .route('/:id')
-  .get(carTypeController.getCarTypeByIdHandler)
+  .get(authorizeAdminMw, carTypeController.getCarTypeByIdHandler)
   .put(
-    validationHandler(CarTypePayloadSchema),
+    [validationHandler(CarTypePayloadSchema), authorizeAdminMw],
     carTypeController.putCarTypeByIdHandler,
   )
-  .delete(carTypeController.deleteCarTypeByIdHandler);
+  .delete(authorizeAdminMw, carTypeController.deleteCarTypeByIdHandler);
 
 module.exports = router;

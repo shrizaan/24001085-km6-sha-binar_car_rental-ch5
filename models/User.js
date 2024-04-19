@@ -10,6 +10,9 @@ module.exports = (sequelize, DataTypes) => {
     // eslint-disable-next-line no-unused-vars
     static associate(models) {
       // define association here
+      User.hasMany(models.CarActionLog, {
+        foreignKey: 'user_id',
+      });
     }
   }
   User.init(
@@ -43,19 +46,6 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         type: DataTypes.ENUM,
         values: ['superadmin', 'admin', 'member'],
-      },
-      created_at: {
-        allowNull: false,
-        type: DataTypes.DATE,
-        defaultValue: DataTypes.fn('now'),
-      },
-      updated_at: {
-        allowNull: false,
-        type: DataTypes.DATE,
-        defaultValue: DataTypes.fn('now'),
-      },
-      deleted_at: {
-        type: DataTypes.DATE,
       },
     },
     {

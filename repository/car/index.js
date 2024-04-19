@@ -1,7 +1,7 @@
 const { randomUUID } = require('crypto');
 
 const path = require('path');
-const { Car, CarType, CarBrand } = require('../../models');
+const { Car, CarType, CarBrand, CarActionLog } = require('../../models');
 const NotFoundError = require('../../exceptions/NotFoundError');
 
 const redisHelper = require('../../helper/redis');
@@ -37,6 +37,10 @@ const getCarById = async (id) => {
         {
           model: CarBrand,
         },
+        // NOTE: may trhow bug
+        {   
+          model: CarActionLog,
+        }
       ],
     });
 

@@ -5,7 +5,7 @@ const NotFoundError = require('../../exceptions/NotFoundError');
 
 const redisHelper = require('../../helper/redis');
 
-const getCarActionLogByCarId = async (carId) => {
+const getCarActionLogByCarId = async (carId, userId) => {
   try {
     const result = await redisHelper.getData(`car-action-log:${carId}`);
     return result;
@@ -16,16 +16,22 @@ const getCarActionLogByCarId = async (carId) => {
       throw new NotFoundError('Car not found.');
     }
 
+    const user = await User.findByPk(userId);
+
+    if (!user) {
+      throw new NotFoundError('User not found.');
+    }
+
     const result = await CarActionLog.findAll({
       where: {
         car_id: carId,
       },
       include: [
         {
-          model: User,
+          model: Car,
         },
         {
-          model: Car,
+          model: User,
         },
       ],
     });

@@ -1,6 +1,10 @@
 const { ValidationError } = require('sequelize');
+const jwt = require('jsonwebtoken');
+
+const userUseCase = require('../usecases/user/user');
 const ClientError = require('../exceptions/ClientError');
 const InvariantError = require('../exceptions/InvariantError');
+const AuthorizationError = require('../exceptions/AuthorizationError');
 
 const validationHandler = (schema) => (req, res, next) => {
   // Letakkan image ke request body untuk divalidasi
@@ -45,7 +49,72 @@ function errorHandler(err, req, res, next) {
   next();
 }
 
+const authorizeSuperAdminMw = async (req, res, next) => {
+  try {
+    const bearerToken = req.headers.authorization;
+    const token = bearerToken.split('Bearer ')[1];
+    const tokenPayload = jwt.verify(token, process.env.JWT_SIGNATURE_SECRET);
+
+    if (tokenPayload.role !== 'superadmin') {
+      throw new Error();
+    }
+
+    req.user = await userUseCase.getUserByEmail(tokenPayload.email);
+    next();
+  } catch (error) {
+    try {
+      throw new AuthorizationError(
+        'You are not an Super Admin and cannot access this resource.',
+      );
+    } catch (err) {
+      next(err);
+    }
+  }
+};
+
+const authorizeAdminMw = async (req, res, next) => {
+  try {
+    const bearerToken = req.headers.authorization;
+    const token = bearerToken.split('Bearer ')[1];
+    const tokenPayload = jwt.verify(token, process.env.JWT_SIGNATURE_SECRET);
+
+    req.user = await userUseCase.getUserByEmail(tokenPayload.email);
+    next();
+  } catch (error) {
+    try {
+      throw new AuthorizationError(
+        'You are not an Super Admin or Admin and cannot  access this resource.',
+      );
+    } catch (err) {
+      next(err);
+    }
+  }
+};
+
+const authorizeMemberMw = async (req, res, next) => {
+  try {
+    const bearerToken = req.headers.authorization;
+    const token = bearerToken.split('Bearer ')[1];
+    const tokenPayload = jwt.verify(token, process.env.JWT_SIGNATURE_SECRET);
+
+    req.user = await userUseCase.getUserByEmail(tokenPayload.email);
+    next();
+  } catch (error) {
+    try {
+      throw new AuthorizationError(
+        'You are not an Super Admin, Admin, or Member and cannot access this resource.',
+      );
+    } catch (err) {
+      next(err);
+    }
+  }
+
+}
+
 module.exports = {
   errorHandler,
   validationHandler,
+  authorizeAdminMw,
+  authorizeSuperAdminMw,
+  authorizeMemberMw
 };

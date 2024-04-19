@@ -29,9 +29,13 @@ const getCarByIdHandler = async (req, res, next) => {
 
 const postCarHandler = async (req, res, next) => {
   try {
+    const { id } = req.user;
     const { image } = req.files;
     req.body.image = image;
-    const result = await carUseCase.postCar(req.body);
+    const result = await carUseCase.postCar({
+      ...req.body,
+      userId: id,
+    });
 
     res.status(201).json({
       status: 'success',
@@ -44,11 +48,15 @@ const postCarHandler = async (req, res, next) => {
 
 const putCarByIdHandler = async (req, res, next) => {
   try {
+    const { id: userId } = req.user;
     const { id } = req.params;
     const { image } = req.files;
     req.body.image = image;
 
-    const result = await carUseCase.putCarById(id, req.body);
+    const result = await carUseCase.putCarById(id, {
+      ...req.body,
+      userId,
+    });
 
     res.status(200).json({
       status: 'success',
@@ -61,9 +69,10 @@ const putCarByIdHandler = async (req, res, next) => {
 
 const deleteCarByIdHandler = async (req, res, next) => {
   try {
+    const { id: userId } = req.user;
     const { id } = req.params;
 
-    const result = await carUseCase.deleteCarById(id);
+    const result = await carUseCase.deleteCarById(id, userId);
 
     res.status(200).json({
       status: 'success',

@@ -20,6 +20,12 @@ module.exports = {
       user_id: {
         allowNull: false,
         type: Sequelize.STRING,
+        references: {
+          model: {
+            tableName: 'user',
+          },
+          key: 'id',
+        }
       },
       action: {
         allowNull: false,

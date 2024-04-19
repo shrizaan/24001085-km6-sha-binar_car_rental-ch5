@@ -1,3 +1,5 @@
+const bcrypt = require('bcrypt');
+
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   // eslint-disable-next-line no-unused-vars
@@ -11,26 +13,28 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
      */
+    const BCRYPT_SALT = 10;
+
     await queryInterface.bulkInsert('user', [
       {
-        id: 'b3b3778d-afbb-4a4d-8c59-419e7d784488',
+        id: 'user-b3b3778d-afbb-4a4d-8c59-419e7d784488',
         name: 'Super Admin',
         email: 'superadmin01@gmail.com',
-        password: 'rahasia',
+        password: await bcrypt.hash('rahasia', BCRYPT_SALT),
         role: 'superadmin',
       },
       {
-        id: 'e7d5eecd-4d7f-4a4e-9d2a-afa1312b098b',
+        id: 'user-e7d5eecd-4d7f-4a4e-9d2a-afa1312b098b',
         name: 'Admin 1',
         email: 'regular-admin@gmail.com',
-        password: 'rahasia admin',
+        password: await bcrypt.hash('rahasia admin', BCRYPT_SALT),
         role: 'admin',
       },
       {
-        id: '5e8c3c8a-3f8b-44a2-93f2-8a65d5e3b8f6',
+        id: 'user-5e8c3c8a-3f8b-44a2-93f2-8a65d5e3b8f6',
         name: 'Member',
         email: 'member-aiken@gmail.com',
-        password: 'rahasia member',
+        password: await bcrypt.hash('rahasia member', BCRYPT_SALT),
         role: 'member',
       },
     ]);

@@ -10,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       CarActionLog.belongsTo(models.Car, { foreignKey: 'car_id' });
+      CarActionLog.belongsTo(models.User, { foreignKey: 'user_id' });
     }
   }
   CarActionLog.init(
@@ -31,19 +32,6 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         type: DataTypes.ENUM,
         values: ['add', 'edit', 'delete'],
-      },
-      created_at: {
-        allowNull: false,
-        type: DataTypes.STRING,
-        defaultValue: DataTypes.fn('now'),
-      },
-      updated_at: {
-        allowNull: false,
-        type: DataTypes.STRING,
-        defaultValue: DataTypes.fn('now'),
-      },
-      deleted_at: {
-        type: DataTypes.STRING,
       },
     },
     {
