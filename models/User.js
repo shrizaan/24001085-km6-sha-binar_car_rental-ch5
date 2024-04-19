@@ -29,6 +29,11 @@ module.exports = (sequelize, DataTypes) => {
         unique: {
           msg: 'Email already used.',
         },
+        validate: {
+          isEmail: {
+            msg: 'Email is invalid',
+          },
+        },
       },
       password: {
         allowNull: false,
@@ -37,7 +42,7 @@ module.exports = (sequelize, DataTypes) => {
       role: {
         allowNull: false,
         type: DataTypes.ENUM,
-        values: ['admin', 'member'],
+        values: ['superadmin', 'admin', 'member'],
       },
       created_at: {
         allowNull: false,

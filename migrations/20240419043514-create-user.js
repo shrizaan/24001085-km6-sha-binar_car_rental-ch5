@@ -1,4 +1,3 @@
-
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -16,7 +15,11 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING,
         unique: true,
-        
+        validate: {
+          isEmail: {
+            msg: 'Email is invalid',
+          },
+        },
       },
       password: {
         allowNull: false,
@@ -25,7 +28,7 @@ module.exports = {
       role: {
         allowNull: false,
         type: Sequelize.ENUM,
-        values: ['admin', 'member'],
+        values: ['superadmin', 'admin', 'member'],
       },
       created_at: {
         allowNull: false,
@@ -45,5 +48,5 @@ module.exports = {
   // eslint-disable-next-line no-unused-vars
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('user');
-  }
+  },
 };
