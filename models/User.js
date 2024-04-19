@@ -32,11 +32,12 @@ module.exports = (sequelize, DataTypes) => {
       },
       password: {
         allowNull: false,
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
       },
       role: {
         allowNull: false,
-        type: DataTypes.STRING,
+        type: DataTypes.ENUM,
+        values: ['admin', 'member'],
       },
       created_at: {
         allowNull: false,

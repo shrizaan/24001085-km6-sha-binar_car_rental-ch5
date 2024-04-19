@@ -20,11 +20,12 @@ module.exports = {
       },
       password: {
         allowNull: false,
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
       },
       role: {
         allowNull: false,
-        type: Sequelize.STRING,
+        type: Sequelize.ENUM,
+        values: ['admin', 'member'],
       },
       created_at: {
         allowNull: false,
