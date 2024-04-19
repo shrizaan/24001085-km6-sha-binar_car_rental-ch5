@@ -26,10 +26,13 @@ jobs:
           node-version: "20"
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: npm install --frozen-lockfile
 
-      - name: Build Next Project
-        run: yarn build
+      - name: Migrate Database
+        run:  npm run migrate
+
+      - name: Seed Database
+        run:  npm run seed
 
       - name: Google Cloud Auth
         uses: "google-github-actions/auth@v2"
