@@ -12,22 +12,4 @@ Password: rahasia
 5. Use Postman to test the API
 
 ### API Documentation
-1. [POST] /api/v1/auth/login
-    - Request body:
-        ```
-        {
-            "email": "
-            "password": "
-        }
-        ```
-    - Response:
-        ```
-        {
-            "status": "success",
-            "message": "Login success",
-            "data": {
-                "token": "Bearer token here"
-            }
-        }
-        ```
-2. [POST] /api/v1/auth/register
+[API DOCS](https://documenter.getpostman.com/view/31128661/2sA3BoZX4n)
