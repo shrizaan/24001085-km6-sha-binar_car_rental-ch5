@@ -10,6 +10,12 @@ module.exports = {
       car_id: {
         allowNull: false,
         type: Sequelize.STRING,
+        references: {
+          model: {
+            tableName: 'car',
+          },
+          key: 'id',
+        },
       },
       user_id: {
         allowNull: false,
