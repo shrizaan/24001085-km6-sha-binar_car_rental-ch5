@@ -1,10 +1,194 @@
 {
 	"info": {
-		"_postman_id": "314cfcf1-ac96-4a18-897d-0b5532c2d35b",
-		"name": "Shahrizan-FSW2-Challenge 4",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"_postman_id": "cb8d6c78-4dfc-4c30-bc63-3428785543e3",
+		"name": "Shahrizan-FSW2-Challenge 5",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31128661"
 	},
 	"item": [
+		{
+			"name": "Admins",
+			"item": [
+				{
+					"name": "Login with Super Admin Account",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('set token to environment variable postman', () => {\r",
+									"    const responseJson = pm.response.json();    \r",
+									"    pm.environment.set('adminToken', responseJson.data.token);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"superadmin01@gmail.com\",\r\n    \"password\": \"rahasia\",\r\n    \"role\": \"superadmin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/admins/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"admins",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Admin with Super Admin Account",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"John Doe\",\r\n    \"email\": \"john123@gmail.com\",\r\n    \"password\": \"rahasia\",\r\n    \"role\": \"admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/admins/register",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"admins",
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Members",
+			"item": [
+				{
+					"name": "Get Current User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{memberToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/current-user",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"current-user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register Member",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Alice\",\r\n    \"email\": \"alice123@gmail.com\",\r\n    \"password\": \"rahasia-alice\",\r\n    \"role\": \"member\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/members/register",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"members",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login Member",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('set token to environment variable postman', () => {\r",
+									"    const responseJson = pm.response.json();    \r",
+									"    pm.environment.set('memberToken', responseJson.data.token);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Alice\",\r\n    \"email\": \"alice123@gmail.com\",\r\n    \"password\": \"rahasia-alice\",\r\n    \"role\": \"member\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/members/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"members",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
 		{
 			"name": "Car Types",
 			"item": [
@@ -14,12 +198,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/car-types",
-							"protocol": "http",
+							"raw": "{{url}}/car-types",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"car-types"
 							]
@@ -33,12 +215,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/car-types/xxx",
-							"protocol": "http",
+							"raw": "{{url}}/car-types/xxx",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"car-types",
 								"xxx"
@@ -53,12 +233,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/car-types/car-type-227f8356-e648-46c0-92e4-1fbd3c2375f2",
-							"protocol": "http",
+							"raw": "{{url}}/car-types/car-type-227f8356-e648-46c0-92e4-1fbd3c2375f2",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"car-types",
 								"car-type-227f8356-e648-46c0-92e4-1fbd3c2375f2"
@@ -73,12 +251,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/car-types/car-type-3f131253-9dd2-4d9c-8573-6e75a80f79de",
-							"protocol": "http",
+							"raw": "{{url}}/car-types/car-type-3f131253-9dd2-4d9c-8573-6e75a80f79de",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"car-types",
 								"car-type-3f131253-9dd2-4d9c-8573-6e75a80f79de"
@@ -102,12 +278,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/car-types",
-							"protocol": "http",
+							"raw": "{{url}}/car-types",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"car-types"
 							]
@@ -130,12 +304,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/car-types",
-							"protocol": "http",
+							"raw": "{{url}}/car-types",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"car-types"
 							]
@@ -158,12 +330,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/car-types/xxx",
-							"protocol": "http",
+							"raw": "{{url}}/car-types/xxx",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"car-types",
 								"xxx"
@@ -187,12 +357,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/car-types/car-type-3f131253-9dd2-4d9c-8573-6e75a80f79de",
-							"protocol": "http",
+							"raw": "{{url}}/car-types/car-type-3f131253-9dd2-4d9c-8573-6e75a80f79de",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"car-types",
 								"car-type-3f131253-9dd2-4d9c-8573-6e75a80f79de"
@@ -216,12 +384,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/car-types/car-type-3f131253-9dd2-4d9c-8573-6e75a80f79de",
-							"protocol": "http",
+							"raw": "{{url}}/car-types/car-type-3f131253-9dd2-4d9c-8573-6e75a80f79de",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"car-types",
 								"car-type-3f131253-9dd2-4d9c-8573-6e75a80f79de"
@@ -245,12 +411,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/car-types/xxx",
-							"protocol": "http",
+							"raw": "{{url}}/car-types/xxx",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"car-types",
 								"xxx"
@@ -274,12 +438,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/car-types/car-type-3f131253-9dd2-4d9c-8573-6e75a80f79de",
-							"protocol": "http",
+							"raw": "{{url}}/car-types/car-type-3f131253-9dd2-4d9c-8573-6e75a80f79de",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"car-types",
 								"car-type-3f131253-9dd2-4d9c-8573-6e75a80f79de"
@@ -299,12 +461,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/car-brands",
-							"protocol": "http",
+							"raw": "{{url}}/car-brands",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"car-brands"
 							]
@@ -318,12 +478,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/car-brands/xxx",
-							"protocol": "http",
+							"raw": "{{url}}/car-brands/xxx",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"car-brands",
 								"xxx"
@@ -338,12 +496,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/car-brands/car-brand-f0856500-ee54-11ee-b564-325096b39f47",
-							"protocol": "http",
+							"raw": "{{url}}/car-brands/car-brand-f0856500-ee54-11ee-b564-325096b39f47",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"car-brands",
 								"car-brand-f0856500-ee54-11ee-b564-325096b39f47"
@@ -358,12 +514,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/car-brands/car-brand-3b171065-cdc0-449d-b37a-70c04cca963f",
-							"protocol": "http",
+							"raw": "{{url}}/car-brands/car-brand-3b171065-cdc0-449d-b37a-70c04cca963f",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"car-brands",
 								"car-brand-3b171065-cdc0-449d-b37a-70c04cca963f"
@@ -387,12 +541,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/car-brands",
-							"protocol": "http",
+							"raw": "{{url}}/car-brands",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"car-brands"
 							]
@@ -415,12 +567,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/car-brands",
-							"protocol": "http",
+							"raw": "{{url}}/car-brands",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"car-brands"
 							]
@@ -443,12 +593,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/car-brands/xxx",
-							"protocol": "http",
+							"raw": "{{url}}/car-brands/xxx",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"car-brands",
 								"xxx"
@@ -472,12 +620,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/car-brands/car-brand-3b171065-cdc0-449d-b37a-70c04cca963f",
-							"protocol": "http",
+							"raw": "{{url}}/car-brands/car-brand-3b171065-cdc0-449d-b37a-70c04cca963f",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"car-brands",
 								"car-brand-3b171065-cdc0-449d-b37a-70c04cca963f"
@@ -501,12 +647,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/car-brands/car-brand-3b171065-cdc0-449d-b37a-70c04cca963f",
-							"protocol": "http",
+							"raw": "{{url}}/car-brands/car-brand-3b171065-cdc0-449d-b37a-70c04cca963f",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"car-brands",
 								"car-brand-3b171065-cdc0-449d-b37a-70c04cca963f"
@@ -530,12 +674,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/car-brands/xxx",
-							"protocol": "http",
+							"raw": "{{url}}/car-brands/xxx",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"car-brands",
 								"xxx"
@@ -559,12 +701,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/car-brands/car-brand-3b171065-cdc0-449d-b37a-70c04cca963f",
-							"protocol": "http",
+							"raw": "{{url}}/car-brands/car-brand-3b171065-cdc0-449d-b37a-70c04cca963f",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"car-brands",
 								"car-brand-3b171065-cdc0-449d-b37a-70c04cca963f"
@@ -584,12 +724,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/cars",
-							"protocol": "http",
+							"raw": "{{url}}/cars",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"cars"
 							]
@@ -603,12 +741,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/cars/xxx",
-							"protocol": "http",
+							"raw": "{{url}}/cars/xxx",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"cars",
 								"xxx"
@@ -623,12 +759,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/cars/car-6e2bc663-5197-441a-957b-bc75e4a2da7c",
-							"protocol": "http",
+							"raw": "{{url}}/cars/car-6e2bc663-5197-441a-957b-bc75e4a2da7c",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"cars",
 								"car-6e2bc663-5197-441a-957b-bc75e4a2da7c"
@@ -643,12 +777,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/cars/car-5b67f1d7-92d4-41c7-8577-4435740aadf1",
-							"protocol": "http",
+							"raw": "{{url}}/cars/car-5b67f1d7-92d4-41c7-8577-4435740aadf1",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"cars",
 								"car-5b67f1d7-92d4-41c7-8577-4435740aadf1"
@@ -725,20 +857,13 @@
 									"type": "file",
 									"src": "text-small.txt"
 								}
-							],
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
+							]
 						},
 						"url": {
-							"raw": "http://localhost:3000/cars",
-							"protocol": "http",
+							"raw": "{{url}}/cars",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"cars"
 							]
@@ -819,20 +944,13 @@
 									"value": "car-brand-cbb3327f-ea73-4f0b-bec0-e480a00dab3f",
 									"type": "text"
 								}
-							],
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
+							]
 						},
 						"url": {
-							"raw": "http://localhost:3000/cars",
-							"protocol": "http",
+							"raw": "{{url}}/cars",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"cars"
 							]
@@ -913,20 +1031,13 @@
 									"type": "file",
 									"src": "fi_users.png"
 								}
-							],
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
+							]
 						},
 						"url": {
-							"raw": "http://localhost:3000/cars/xxx",
-							"protocol": "http",
+							"raw": "{{url}}/cars/xxx",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"cars",
 								"xxx"
@@ -1003,20 +1114,13 @@
 									"type": "file",
 									"src": "toyota-yaris.jpg"
 								}
-							],
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
+							]
 						},
 						"url": {
-							"raw": "http://localhost:3000/cars/9ff03bbc-b18c-4ba7-8f3a-4c4b5c2f6c77",
-							"protocol": "http",
+							"raw": "{{url}}/cars/9ff03bbc-b18c-4ba7-8f3a-4c4b5c2f6c77",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"cars",
 								"9ff03bbc-b18c-4ba7-8f3a-4c4b5c2f6c77"
@@ -1098,20 +1202,13 @@
 									"value": "car-brand-e832841b-1577-46f2-9e49-4ea6197bc19d",
 									"type": "text"
 								}
-							],
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
+							]
 						},
 						"url": {
-							"raw": "http://localhost:3000/cars/car-5b67f1d7-92d4-41c7-8577-4435740aadf1",
-							"protocol": "http",
+							"raw": "{{url}}/cars/car-5b67f1d7-92d4-41c7-8577-4435740aadf1",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"cars",
 								"car-5b67f1d7-92d4-41c7-8577-4435740aadf1"
@@ -1126,12 +1223,10 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/cars/xxx",
-							"protocol": "http",
+							"raw": "{{url}}/cars/xxx",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"cars",
 								"xxx"
@@ -1146,12 +1241,10 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/cars/car-5b67f1d7-92d4-41c7-8577-4435740aadf1",
-							"protocol": "http",
+							"raw": "{{url}}/cars/car-5b67f1d7-92d4-41c7-8577-4435740aadf1",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"cars",
 								"car-5b67f1d7-92d4-41c7-8577-4435740aadf1"
@@ -1161,6 +1254,60 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Car Action Logs",
+			"item": [
+				{
+					"name": "Get Car Action Logs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/cars/car-22965c39-33f2-45d7-abd0-3e7cbcb526d6/activities",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"cars",
+								"car-22965c39-33f2-45d7-abd0-3e7cbcb526d6",
+								"activities"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{adminToken}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
 		}
 	]
 }

@@ -28,12 +28,6 @@ jobs:
       - name: Install dependencies
         run: npm install --frozen-lockfile
 
-      - name: Migrate Database
-        run:  npm run migrate
-
-      - name: Seed Database
-        run:  npm run seed
-
       - name: Google Cloud Auth
         uses: "google-github-actions/auth@v2"
         with:
