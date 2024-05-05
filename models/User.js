@@ -47,6 +47,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.ENUM,
         values: ['superadmin', 'admin', 'member'],
       },
+      image: {
+        allowNull: false,
+        type: DataTypes.TEXT,
+      }
     },
     {
       sequelize,

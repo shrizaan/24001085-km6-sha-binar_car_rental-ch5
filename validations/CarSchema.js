@@ -15,7 +15,7 @@ const CarPayloadSchema = Joi.object({
         'image/webp',
       )
       .required(),
-  }).unknown(),
+  }).unknown().required(),
   description: Joi.string().required(),
   rentPerDay: Joi.number().required(),
   capacity: Joi.number().required(),

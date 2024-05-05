@@ -25,6 +25,10 @@ module.exports = {
         allowNull: false,
         type: Sequelize.TEXT,
       },
+      image: {
+        allowNull: false,
+        type: Sequelize.TEXT,
+      },
       role: {
         allowNull: false,
         type: Sequelize.ENUM,
