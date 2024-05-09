@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       User.hasMany(models.CarActionLog, {
         foreignKey: 'user_id',
+        onDelete: 'SET NULL',
       });
     }
   }

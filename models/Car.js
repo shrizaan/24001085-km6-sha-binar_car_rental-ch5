@@ -11,9 +11,10 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Car.hasMany(models.CarActionLog, {
         foreignKey: 'car_id',
+        onDelete: 'CASCADE',
       })
-      Car.belongsTo(models.CarType, { foreignKey: 'type_id' });
-      Car.belongsTo(models.CarBrand, { foreignKey: 'brand_id' });
+      Car.belongsTo(models.CarType, { foreignKey: 'type_id', onDelete: 'SET NULL'});
+      Car.belongsTo(models.CarBrand, { foreignKey: 'brand_id', onDelete: 'SET NULL'});
     }
   }
   Car.init(

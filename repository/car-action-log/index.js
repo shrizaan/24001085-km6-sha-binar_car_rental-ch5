@@ -44,13 +44,13 @@ const getCarActionLogByCarId = async (carId, userId) => {
 const postCarActionLogByCarId = async (carId, userId, action) => {
   const id = `car-action-log:${randomUUID()}`;
 
-  const car = await Car.findByPk(carId);
+  const car = await Car.findByPk(carId, { paranoid: false });
 
   if (!car) {
     throw new NotFoundError('Car not found.');
   }
 
-  const user = await User.findByPk(userId);
+  const user = await User.findByPk(userId, { paranoid: false });
 
   if (!user) {
     throw new NotFoundError('User not found.');

@@ -38,9 +38,9 @@ const getCarById = async (id) => {
           model: CarBrand,
         },
         // NOTE: may trhow bug
-        {   
+        {
           model: CarActionLog,
-        }
+        },
       ],
     });
 

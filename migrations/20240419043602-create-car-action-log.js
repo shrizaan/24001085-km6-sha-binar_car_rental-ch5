@@ -16,6 +16,7 @@ module.exports = {
           },
           key: 'id',
         },
+        onDelete: 'CASCADE',
       },
       user_id: {
         allowNull: false,
@@ -25,7 +26,8 @@ module.exports = {
             tableName: 'user',
           },
           key: 'id',
-        }
+        },
+        onDelete: 'SET NULL',
       },
       action: {
         allowNull: false,

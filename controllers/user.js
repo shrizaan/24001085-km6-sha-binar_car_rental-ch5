@@ -19,6 +19,8 @@ const register = async (req, res, next) => {
   }
 };
 
+
+
 const login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
@@ -36,6 +38,7 @@ const login = async (req, res, next) => {
     const token = createJWTToken({
       id: user.id,
       email: user.email,
+      image: user.image,
       role: user.role,
       createdAt: user.created_at,
       updatedAt: user.updated_at,
@@ -47,6 +50,7 @@ const login = async (req, res, next) => {
         id: user.id,
         name: user.name,
         email: user.email,
+        image: user.image,
         token,
         created_at: user.created_at,
         updated_at: user.updated_at,

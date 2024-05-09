@@ -64,6 +64,7 @@ module.exports = {
           },
           key: 'id',
         },
+        onDelete: 'SET NULL',
       },
       brand_id: {
         type: Sequelize.STRING,
@@ -74,6 +75,7 @@ module.exports = {
           },
           key: 'id',
         },
+        onDelete: 'SET NULL',
       },
       created_at: {
         allowNull: false,

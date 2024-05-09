@@ -9,8 +9,14 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      CarActionLog.belongsTo(models.Car, { foreignKey: 'car_id' });
-      CarActionLog.belongsTo(models.User, { foreignKey: 'user_id' });
+      CarActionLog.belongsTo(models.Car, {
+        foreignKey: 'car_id',
+        onDelete: 'CASCADE',
+      });
+      CarActionLog.belongsTo(models.User, {
+        foreignKey: 'user_id',
+        onDelete: 'SET NULL',
+      });
     }
   }
   CarActionLog.init(

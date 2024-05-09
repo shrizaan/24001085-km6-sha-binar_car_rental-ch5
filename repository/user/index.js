@@ -1,10 +1,12 @@
 const { randomUUID } = require('crypto');
 const bcrypt = require('bcrypt');
 
+const path = require('path');
 const { User } = require('../../models');
 
 const redisHelper = require('../../helper/redis');
 const NotFoundError = require('../../exceptions/NotFoundError');
+const { uploader } = require('../../helper/cloudinary');
 
 const BCRYPT_SALT = 10;
 
@@ -31,6 +33,18 @@ const getUserByEmail = async (email) => {
 const postUser = async (payload) => {
   const id = `user-${randomUUID()}`;
 
+  if (payload.image) {
+    const { image } = payload;
+
+    image.publicId = id;
+
+    image.name = `${image.publicId}${path.parse(image.name)}`;
+
+    const imageUpload = await uploader(image);
+    // eslint-disable-next-line no-param-reassign
+    payload.image = imageUpload.secure_url;
+  }
+
   const encryptedPassword = await bcrypt.hash(payload.password, BCRYPT_SALT);
 
   const result = await User.create({
@@ -45,6 +59,18 @@ const postUser = async (payload) => {
 };
 
 const putUserByEmail = async (email, payload) => {
+  if (payload.image) {
+    const { image } = payload;
+
+    image.publicId = randomUUID();
+
+    image.name = `${image.publicId}${path.parse(image.name)}`;
+
+    const imageUpload = await uploader(image);
+    // eslint-disable-next-line no-param-reassign
+    payload.image = imageUpload.secure_url;
+  }
+
   const result = await User.update(payload, {
     where: {
       email,

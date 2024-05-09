@@ -19,7 +19,7 @@ const UserRegisterPayloadSchema = Joi.object({
   })
     .unknown()
     .required(),
-  role: Joi.string().valid('superadmin', 'admin', 'member').required(),
+  
 });
 
 
@@ -27,5 +27,7 @@ const UserLoginPayloadSchema = Joi.object({
   email: Joi.string().email().required(),
   password: Joi.string().required(),
 })
+
+
 
 module.exports = { UserRegisterPayloadSchema, UserLoginPayloadSchema };

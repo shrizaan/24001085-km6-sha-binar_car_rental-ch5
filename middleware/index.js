@@ -49,6 +49,16 @@ function errorHandler(err, req, res, next) {
   next();
 }
 
+const setRoleAdminWhenRegister = async (req, res, next) => {
+  req.body.role = 'admin';
+  next();
+};
+
+const setRoleMemberWhenRegister = async (req, res, next) => {
+  req.body.role = 'member';
+  next();
+};
+
 const authorizeSuperAdminMw = async (req, res, next) => {
   try {
     const bearerToken = req.headers.authorization;
@@ -108,13 +118,14 @@ const authorizeMemberMw = async (req, res, next) => {
       next(err);
     }
   }
-
-}
+};
 
 module.exports = {
   errorHandler,
   validationHandler,
   authorizeAdminMw,
   authorizeSuperAdminMw,
-  authorizeMemberMw
+  authorizeMemberMw,
+  setRoleAdminWhenRegister,
+  setRoleMemberWhenRegister
 };
